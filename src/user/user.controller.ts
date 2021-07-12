@@ -18,7 +18,18 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'))
   @Post('medicine')
   async medicine_list(@Request() request) {
-    console.log(request)
     return this.userService.medicine_list(request.body.limit)
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('findMedicine')
+  find_medicine(@Request() request) {
+    return this.userService.find_medicine(request.body.id)
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post("add")
+  add_medicine(@Request() request) {
+    return this.userService.add_medicine(request.body.name, request.body.count)
   }
 }
